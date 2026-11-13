@@ -65,9 +65,9 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; text-wrap: bala
 .nav { display: flex; flex-wrap: wrap; gap: 2px 18px; }
 .nav a { font-family: var(--font-sc); font-size: 1rem; letter-spacing: 0.03em; color: var(--muted); text-decoration: none; padding: 6px 0; border-bottom: 2px solid transparent; }
 .nav a:hover { color: var(--candle); border-bottom-color: var(--candle); }
-.nav { align-items: center; }
-.theme-toggle { font: inherit; font-size: 1.1rem; line-height: 1; width: 38px; height: 38px; display: inline-flex; align-items: center; justify-content: center; background: transparent; color: var(--muted); border: 1px solid var(--line); border-radius: 50%; cursor: pointer; transition: color .2s ease, border-color .2s ease; }
+.theme-toggle { position: absolute; top: 8px; right: max(16px, env(safe-area-inset-right, 0px)); font: inherit; font-size: 1.1rem; line-height: 1; width: 38px; height: 38px; display: inline-flex; align-items: center; justify-content: center; background: transparent; color: var(--muted); border: 1px solid var(--line); border-radius: 50%; cursor: pointer; transition: color .2s ease, border-color .2s ease; }
 .theme-toggle:hover { color: var(--candle); border-color: var(--candle); }
+@media (max-width: 1200px) { .site-header .wrap { padding-right: max(64px, calc(env(safe-area-inset-right, 0px) + 54px)); } }
 
 /* Light theme */
 :root[data-theme="light"] {
@@ -82,7 +82,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; text-wrap: bala
   --paper-rule: #D8CCA8;
   color-scheme: light;
 }
-  
+
 section[id] { scroll-margin-top: 4.5rem; }
 .chapter { padding-block: 4.75rem; }
 .chapter.alt { background: var(--night-2); border-block: 1px solid var(--line); }
@@ -271,10 +271,28 @@ blockquote.q-lead { margin-left: 0; margin-right: 0; }
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <symbol id="crest" viewBox="0 0 64 76">
     <path d="M32 3 L58 12 V38 C58 55 46 67 32 73 C18 67 6 55 6 38 V12 Z" fill="var(--night-2)" stroke="var(--candle)" stroke-width="3" stroke-linejoin="round"/>
-    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode">☀</button>
     <path d="M32 14 C37 21 39 25 36 31 C34 34 30 34 28 31 C25 26 28 21 32 14 Z" fill="var(--candle)"/>
     <path d="M16 44 Q24 40 32 44 Q40 40 48 44 V57 Q40 53 32 57 Q24 53 16 57 Z" fill="none" stroke="var(--text)" stroke-width="2.5" stroke-linejoin="round"/>
-    <script>
+    <line x1="32" y1="44" x2="32" y2="57" stroke="var(--text)" stroke-width="2.5"/>
+  </symbol>
+</svg>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#home"><svg aria-hidden="true"><use href="#crest"/></svg><span>Living Poets Society</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#home">Home</a>
+      <a href="#about">About the Advocacy</a>
+      <a href="#society">The Society</a>
+      <a href="#voices">Voices</a>
+      <a href="#article">Blog Article</a>
+      <a href="#act">Call to Action</a>
+      <a href="#references">References</a>
+    </nav>
+  </div>
+  <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode">☀</button>
+</header>
+<script>
 (function () {
   var root = document.documentElement;
   var btn = document.getElementById('theme-toggle');
@@ -301,24 +319,6 @@ blockquote.q-lead { margin-left: 0; margin-right: 0; }
   });
 })();
 </script>
-    <line x1="32" y1="44" x2="32" y2="57" stroke="var(--text)" stroke-width="2.5"/>
-  </symbol>
-</svg>
-
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="#home"><svg aria-hidden="true"><use href="#crest"/></svg><span>Living Poets Society</span></a>
-    <nav class="nav" aria-label="Main">
-      <a href="#home">Home</a>
-      <a href="#about">About the Advocacy</a>
-      <a href="#society">The Society</a>
-      <a href="#voices">Voices</a>
-      <a href="#article">Blog Article</a>
-      <a href="#act">Call to Action</a>
-      <a href="#references">References</a>
-    </nav>
-  </div>
-</header>
 
 <main>
 <!-- HOME -->
@@ -470,7 +470,7 @@ blockquote.q-lead { margin-left: 0; margin-right: 0; }
       <blockquote>
         <figure class="qpic"><img src="img/stewart.jpg" width="1200" height="900" alt="A bald older man in a dark jacket and brown turtleneck, seated at a glass table with his fingers steepled." loading="lazy"></figure>
         <p class="q">“Art is part of the human spirit, an unquenchable expression of who we are.”</p>
-        <footer class="q-by">From Sir Patrick Stewart a.k.a Professor X (my favorite X-Men in Marvel)</footer>
+        <footer class="q-by">From Sir Patrick Stewart, a.k.a. Professor X (my favorite of the X-Men in Marvel)</footer>
       </blockquote>
       <blockquote>
         <figure class="qpic"><img src="img/picasso.jpg" width="800" height="600" alt="A black-and-white photo of an older man resting his chin on clasped hands in front of a large painting." loading="lazy"></figure>
