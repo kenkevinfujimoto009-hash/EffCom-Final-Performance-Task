@@ -1,0 +1,678 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Living Poets Society</title>
+<meta name="neknevin:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..600&display=swap">
+<style>
+/* Layout concept: a night-study site in one world (cave, candle, old anthology). Dark pages carry the argument; the article and the pledge sit on paper sheets like pages of a notebook. Each section is a chapter. */
+:root {
+  --night: #0F131D;
+  --night-2: #171C2A;
+  --line: #2E3650;
+  --text: #ECE5D3;
+  --muted: #B4AE9E;
+  --candle: #E7B54F;
+  --crest: #D9545C;
+  --paper: #EEE6D1;
+  --paper-2: #E3D9BD;
+  --paper-rule: #C9BD9C;
+  --ink: #1B2033;
+  --ink-muted: #4B5068;
+  --paper-red: #8F2433;
+  --font-display: 'IM Fell English', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+  --font-sc: 'IM Fell English SC', 'IM Fell English', Georgia, serif;
+  --font-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-hand: 'Caveat', 'Segoe Script', 'Bradley Hand', cursive;
+  --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--night);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 30; background: var(--night);
+}
+a { color: var(--candle); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, input:focus-visible + label {
+  outline: 3px solid var(--candle); outline-offset: 3px; border-radius: 3px;
+}
+.sheet a:focus-visible, .roll button:focus-visible { outline-color: var(--paper-red); }
+.wrap {
+  max-width: 1080px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; text-wrap: balance; margin: 0; color: var(--text); }
+.label { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0; }
+.cite { color: var(--muted); font-size: 0.94em; }
+
+/* Header */
+.site-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--night); border-bottom: 1px solid var(--line); }
+.site-header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 24px; padding-block: 10px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 1.4rem; color: var(--text); text-decoration: none; }
+.brand svg { width: 26px; height: 31px; flex: none; }
+.nav { display: flex; flex-wrap: wrap; gap: 2px 18px; }
+.nav a { font-family: var(--font-sc); font-size: 1rem; letter-spacing: 0.03em; color: var(--muted); text-decoration: none; padding: 6px 0; border-bottom: 2px solid transparent; }
+.nav a:hover { color: var(--candle); border-bottom-color: var(--candle); }
+
+section[id] { scroll-margin-top: 4.5rem; }
+.chapter { padding-block: 4.75rem; }
+.chapter.alt { background: var(--night-2); border-block: 1px solid var(--line); }
+
+/* Buttons */
+.btn { display: inline-block; font-family: var(--font-sc); font-size: 1.05rem; letter-spacing: 0.04em; padding: 11px 22px; border-radius: 2px; text-decoration: none; border: 2px solid var(--candle); background: var(--candle); color: var(--night); cursor: pointer; }
+.btn.ghost { background: transparent; color: var(--candle); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn.red { background: var(--paper-red); border-color: var(--paper-red); color: #FBF7EA; }
+
+/* Home */
+.hero { padding-block: 3.5rem 5rem; background: radial-gradient(ellipse 60% 55% at 85% 12%, rgba(231, 181, 79, 0.13), transparent 70%); overflow-x: clip; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: 3.5rem; align-items: center; }
+.hero h1 { font-size: clamp(3.2rem, 9.5vw, 6.4rem); line-height: 0.98; margin-top: 14px; letter-spacing: -0.01em; }
+.hero h1 em { color: var(--candle); }
+.slogan { font-family: var(--font-display); font-style: italic; font-size: clamp(1.5rem, 3.6vw, 2.2rem); line-height: 1.2; color: var(--candle); margin: 18px 0 0; text-wrap: balance; }
+.gloss { margin-top: 6px; }
+.intro { max-width: 36rem; margin: 22px 0 0; font-size: 1.1875rem; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.poem { margin: 38px 0 0; font-family: var(--font-display); font-style: italic; font-size: 1.3rem; line-height: 1.65; }
+.poem p { margin: 0; }
+.poem .l4 { opacity: 0.88; } .poem .l5 { opacity: 0.8; } .poem .l6 { opacity: 0.72; }
+.poem-note { margin-top: 10px; }
+.pinned { margin: 0; background: var(--paper); padding: 12px 12px 16px; box-shadow: 0 20px 44px rgba(0, 0, 0, 0.55); max-width: 460px; justify-self: center; width: 100%; }
+.pinned img { display: block; width: 100%; height: auto; }
+.pinned figcaption { font-family: var(--font-mono); font-size: 0.75rem; line-height: 1.5; color: var(--ink-muted); margin-top: 10px; }
+
+/* Section heads */
+.section-head { max-width: 42rem; }
+.section-head h2 { font-size: clamp(2.1rem, 5.2vw, 3.4rem); line-height: 1.08; margin-top: 10px; }
+.section-head p { margin: 16px 0 0; }
+
+/* About */
+.trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; margin-top: 3rem; }
+.trio h3 { font-size: 1.6rem; line-height: 1.15; margin-bottom: 10px; color: var(--candle); }
+.trio p { margin: 0; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid var(--line); }
+.stat .num { font-family: var(--font-display); font-size: clamp(2.8rem, 6.5vw, 4rem); line-height: 1; color: var(--candle); font-variant-numeric: tabular-nums; }
+.stat p { margin: 10px 0 6px; }
+.stat .label { text-transform: none; letter-spacing: 0.02em; }
+
+/* Society */
+.carpe { margin-top: 3rem; max-width: 42rem; }
+.carpe-word { font-family: var(--font-display); font-style: italic; font-size: clamp(3.4rem, 13vw, 9rem); line-height: 0.92; margin: 0; color: var(--candle); }
+.carpe p:last-child { margin: 14px 0 0; color: var(--muted); }
+.gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 20px; margin: 3rem 0 0; }
+.gallery figure { margin: 0; min-width: 0; background: var(--paper); padding: 10px 10px 14px; box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45); }
+.gallery figure.wide { grid-column: 1 / -1; }
+.gallery img { display: block; width: 100%; height: auto; }
+.gallery figcaption { font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.5; color: var(--ink-muted); margin-top: 10px; }
+.pillars { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2rem; margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid var(--line); }
+.pillars h3 { font-size: 2rem; font-style: italic; color: var(--candle); line-height: 1.1; }
+.pillars .label { margin: 4px 0 10px; }
+.pillars p { margin: 0; }
+.pillars-intro { max-width: 40rem; margin-top: 3.5rem; }
+.pillars-intro h3 { font-size: 1.9rem; }
+.pillars-intro p { margin: 10px 0 0; }
+.torn { margin-top: 3rem; max-width: 40rem; border: 1px dashed var(--muted); padding: 20px 22px; }
+.margin-note { font-family: var(--font-hand); font-size: 1.7rem; line-height: 1.1; color: var(--candle); margin: 0 0 6px; transform: rotate(-1deg); display: inline-block; }
+.torn p:last-child { margin: 0; }
+
+/* Voices */
+.q-lead { margin: 3rem 0 0; max-width: 56rem; }
+.q-lead p.q { font-family: var(--font-display); font-style: italic; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.15; text-wrap: balance; margin: 0; }
+.q-by { font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.55; color: var(--muted); margin-top: 18px; }
+.q-note { margin: 10px 0 0; font-size: 1rem; max-width: 40rem; }
+.q-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.5rem; margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid var(--line); }
+.q-grid blockquote { margin: 0; min-width: 0; }
+.q-grid p.q { font-family: var(--font-display); font-style: italic; font-size: 1.6rem; line-height: 1.22; text-wrap: balance; margin: 0; }
+blockquote.q-lead { margin-left: 0; margin-right: 0; }
+
+/* Article sheet */
+.sheet { position: relative; background: var(--paper); color: var(--ink); max-width: 54rem; margin: 0; padding: 3.25rem 3.25rem 3.25rem 5rem; box-shadow: 0 24px 56px rgba(0, 0, 0, 0.5); }
+.sheet::before { content: ""; position: absolute; top: 0; bottom: 0; left: 3.5rem; width: 1px; background: rgba(143, 36, 51, 0.4); }
+.sheet h2, .sheet h3 { color: var(--ink); }
+.sheet .label { color: var(--ink-muted); }
+.sheet a { color: var(--paper-red); }
+.sheet .cite { color: var(--ink-muted); }
+.sheet h2 { font-size: clamp(2.2rem, 5.5vw, 3.5rem); line-height: 1.04; margin-top: 10px; }
+.deck { font-size: 1.3rem; color: var(--ink-muted); margin: 18px 0 0; line-height: 1.5; }
+.meta { margin-top: 16px; }
+.prose { max-width: 41rem; margin-top: 2.25rem; font-size: 1.125rem; line-height: 1.72; }
+.prose > * + * { margin-top: 1.15em; }
+.prose h3 { font-size: 1.9rem; line-height: 1.12; margin-top: 2.2em; }
+.prose p { margin-bottom: 0; }
+.prose > p:first-of-type::first-letter { font-family: var(--font-display); font-size: 4.3em; float: left; line-height: 0.8; padding: 0.07em 0.1em 0 0; color: var(--paper-red); }
+.figure { margin: 2rem 0; }
+.figure .title { font-family: var(--font-display); font-size: 1.3rem; color: var(--ink); margin-bottom: 10px; }
+.figure figcaption { font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.5; color: var(--ink-muted); margin-top: 10px; }
+.chart-scroll { overflow-x: auto; }
+.chart-scroll svg { display: block; min-width: 540px; width: 100%; height: auto; }
+.chart-scroll text { font-family: var(--font-mono); font-size: 13px; fill: var(--ink-muted); }
+.chart-scroll text.val { fill: var(--ink); font-weight: 500; }
+.chart-scroll text.hand { font-family: var(--font-hand); font-size: 20px; fill: var(--paper-red); }
+.dots { display: grid; grid-template-columns: repeat(15, minmax(0, 1fr)); gap: 8px; max-width: 32rem; }
+.dots span { display: block; aspect-ratio: 1; border-radius: 50%; background: var(--paper-rule); }
+.dots span.at { background: var(--paper-red); }
+.callout { background: var(--paper-2); border: 1px solid var(--paper-rule); padding: 20px 22px; }
+.callout h3 { margin-top: 0; font-size: 1.5rem; }
+.callout p { margin: 10px 0 0; font-size: 1.025rem; }
+.reflect { padding-left: 1.2rem; }
+.reflect li + li { margin-top: 0.6em; }
+
+/* Call to action */
+.cta-head h2 { font-size: clamp(2.6rem, 8vw, 5rem); line-height: 1; margin-top: 10px; max-width: 14ch; }
+.cta-head .tl { font-family: var(--font-display); font-style: italic; font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--candle); margin: 14px 0 0; }
+.cta-head .deck { color: var(--muted); max-width: 40rem; }
+.cta-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 3rem; margin-top: 2.5rem; align-items: start; }
+.pledge { border: 0; margin: 0; padding: 0; min-width: 0; }
+.pledge legend { font-family: var(--font-display); font-size: 1.5rem; padding: 0; margin-bottom: 10px; color: var(--text); }
+.pledge .opt { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+.pledge .opt:last-of-type { border-bottom: 1px solid var(--line); }
+.pledge input { width: 22px; height: 22px; margin: 3px 0 0; flex: none; accent-color: var(--candle); }
+.pledge label { cursor: pointer; }
+.roll { background: var(--paper); color: var(--ink); padding: 26px 26px 24px; box-shadow: 0 20px 44px rgba(0, 0, 0, 0.5); transform: rotate(-0.8deg); }
+.roll .label { color: var(--ink-muted); }
+.roll .sentence { font-family: var(--font-hand); font-size: 1.85rem; line-height: 1.25; color: var(--ink); margin: 12px 0 20px; }
+.roll .status { min-height: 1.5em; margin: 10px 0 0; color: var(--ink-muted); font-size: 0.95rem; }
+.voice { margin-top: 3rem; max-width: 42rem; }
+.voice h3 { font-size: 1.9rem; line-height: 1.12; }
+.voice p { margin: 10px 0 0; }
+
+/* References */
+.refs { max-width: 46rem; margin-top: 2rem; }
+.ref { padding-left: 2rem; text-indent: -2rem; margin: 0 0 0.9rem; font-size: 1rem; line-height: 1.55; overflow-wrap: anywhere; }
+.site-footer { padding-block: 2.5rem 3rem; border-top: 1px solid var(--line); }
+.site-footer .wrap { display: flex; gap: 16px; align-items: flex-start; }
+.site-footer svg { width: 34px; height: 40px; flex: none; }
+.site-footer p { margin: 0; max-width: 40rem; color: var(--muted); font-size: 0.95rem; }
+
+@media (max-width: 880px) {
+  .hero-grid, .cta-grid { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
+  .trio, .stats, .q-grid, .gallery { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .gallery figure.wide { grid-column: auto; }
+  .pillars { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .chapter { padding-block: 3.25rem; }
+  .sheet { padding: 1.75rem 1.25rem; }
+  .sheet::before { display: none; }
+  .pinned { max-width: 360px; }
+}
+@media (max-width: 520px) {
+  .pillars { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Button animations */
+.btn{position:relative;overflow:hidden;transition:transform .2s ease,box-shadow .25s ease,background-color .2s ease,color .2s ease}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.35) 50%,transparent 65%);transform:translateX(-120%);pointer-events:none}
+.btn:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 10px 22px rgba(231,181,79,.3)}
+.btn:hover:not(:disabled)::after{transform:translateX(120%);transition:transform .7s ease}
+.btn.ghost:hover:not(:disabled){background:rgba(231,181,79,.14)}
+.btn.red:hover:not(:disabled){box-shadow:0 10px 22px rgba(143,36,51,.45)}
+.btn:active:not(:disabled){transform:translateY(0) scale(.96);box-shadow:none}
+.btn:disabled::after{display:none}
+@keyframes pop{40%{transform:scale(1.09)}}
+.btn.pop{animation:pop .4s ease}
+
+/* Picture animations */
+.frame{overflow:hidden}
+.frame img{transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.gallery figure:hover .frame img,.pinned:hover .frame img,.qpic:hover .frame img{transform:scale(1.07)}
+.gallery figure{transition:transform .35s ease,box-shadow .35s ease}
+.gallery figure:hover{transform:translateY(-6px) rotate(-.5deg);box-shadow:0 22px 40px rgba(0,0,0,.55)}
+@keyframes float{50%{translate:0 -8px}}
+.pinned{transition:transform .5s ease,box-shadow .5s ease;animation:float 7s ease-in-out infinite}
+.pinned:hover{transform:scale(1.02);box-shadow:0 26px 54px rgba(0,0,0,.6);animation-play-state:paused}
+
+/* Quote pictures */
+.q-lead{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:2.25rem;align-items:center}
+.qpic{margin:0;background:var(--paper);padding:8px;box-shadow:0 14px 30px rgba(0,0,0,.45);max-width:360px;width:100%}
+.qpic img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.q-grid .qpic{margin-bottom:20px}
+.pillars h3{margin-bottom:10px}
+@media (max-width:880px){.q-lead{grid-template-columns:minmax(0,1fr)}}
+
+/* Reveal on scroll (only when JS runs) */
+.js .reveal{opacity:0;translate:0 28px;transition:opacity .8s ease var(--d,0ms),translate .8s ease var(--d,0ms),transform .35s ease,box-shadow .35s ease}
+.js .reveal.in{opacity:1;translate:0 0}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,.btn::after,.frame img,.gallery figure,.pinned{transition:none!important;animation:none!important}
+  .btn:hover:not(:disabled),.gallery figure:hover,.pinned:hover,.gallery figure:hover .frame img,.pinned:hover .frame img,.qpic:hover .frame img{transform:none}
+    .js .reveal{opacity:1;translate:none;transition:none}
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="crest" viewBox="0 0 64 76">
+    <path d="M32 3 L58 12 V38 C58 55 46 67 32 73 C18 67 6 55 6 38 V12 Z" fill="var(--night-2)" stroke="var(--candle)" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M32 14 C37 21 39 25 36 31 C34 34 30 34 28 31 C25 26 28 21 32 14 Z" fill="var(--candle)"/>
+    <path d="M16 44 Q24 40 32 44 Q40 40 48 44 V57 Q40 53 32 57 Q24 53 16 57 Z" fill="none" stroke="var(--text)" stroke-width="2.5" stroke-linejoin="round"/>
+    <line x1="32" y1="44" x2="32" y2="57" stroke="var(--text)" stroke-width="2.5"/>
+  </symbol>
+</svg>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#home"><svg aria-hidden="true"><use href="#crest"/></svg><span>Living Poets Society</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#home">Home</a>
+      <a href="#about">About the Advocacy</a>
+      <a href="#society">The Society</a>
+      <a href="#voices">Voices</a>
+      <a href="#article">Blog Article</a>
+      <a href="#act">Call to Action</a>
+      <a href="#references">References</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- HOME -->
+<section id="home" class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="label">Advocacy blog · Community and culture · Philippines</p>
+      <h1>Living <em>Poets</em> Society</h1>
+      <p class="slogan">Carpe diem. Seize the day.</p>
+      <p class="intro">In <i>Dead Poets Society</i>, a teacher asks his students to make poetry part of life. In the Philippines, fewer Filipinos are reading for pleasure, about forty of our languages are endangered, and the classes where students meet poetry and art are changing. This site gathers the evidence from credible sources and invites you to join a society that keeps verse and art alive.</p>
+      <div class="cta-row">
+        <a class="btn" href="#article">Read the evidence</a>
+        <a class="btn ghost" href="#act">Join the society</a>
+      </div>
+    </div>
+    <figure class="pinned">
+      <img src="img/fujimoto.jpg" width="1200" height="900" alt="A person with dark hair and glasses seen in profile with arms crossed, wearing a blue sweater in a softly lit room.">
+      <figcaption>“Writing makes me feel alive.” — Fujimoto</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="chapter alt">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="label">About the advocacy · Roll call</p>
+      <h2>Poetry and art are how a people remembers itself.</h2>
+      <p>The Living Poets Society asks one question: are Filipinos still making room for poetry, art and the languages they are written in?</p>
+    </div>
+
+    <div class="trio">
+      <div>
+        <h3>The issue</h3>
+        <p>Adult non-school book reading fell from 54% in 2012 to 42% in 2023 <span class="cite">(Philippine Daily Inquirer, 2024a)</span>. About 40 of the country's roughly 135 languages are endangered <span class="cite">(Campued, 2025)</span>. In 2022, Filipino 15-year-olds ranked sixth-lowest of 81 countries in reading <span class="cite">(Chi, 2023)</span>. Poems and art live in readers and in languages, and both are under strain.</p>
+      </div>
+      <div>
+        <h3>Why it matters</h3>
+        <p>Poetry and art carry a people's language, memory and humor, and they help young people put feelings into words. Reviews of the research link arts activities to better health and well-being <span class="cite">(Fancourt &amp; Finn, 2019; The Wallace Foundation, 2025)</span>. When poems and art classes fade, a free and accessible form of expression fades with them.</p>
+      </div>
+      <div>
+        <h3>Who is affected</h3>
+        <p>Students who rarely meet poetry or art taught by specialists, Filipino and literature teachers, speakers of endangered languages, and the local poets, poetic debate performers and artists who need audiences to keep their craft alive.</p>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="num">42%</div>
+        <p>of Filipino adults read non-school books in 2023, down from 54% in 2012.</p>
+        <span class="label">SWS for NBDB, via Philippine Daily Inquirer (2024a)</span>
+      </div>
+      <div class="stat">
+        <div class="num">40 of 135</div>
+        <p>Philippine languages are classed as endangered by the Komisyon sa Wikang Filipino.</p>
+        <span class="label">KWF, via PTV News (Campued, 2025)</span>
+      </div>
+      <div class="stat">
+        <div class="num">347</div>
+        <p>was the Philippines' PISA 2022 reading score, sixth-lowest among 81 countries.</p>
+        <span class="label">OECD PISA 2022, via Philstar (Chi, 2023)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE SOCIETY -->
+<section id="society" class="chapter">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="label">The Society · Inspired by Dead Poets Society</p>
+      <h2>A film that made poetry feel alive.</h2>
+      <p><i>Dead Poets Society</i> (1989, directed by Peter Weir) is set at a strict boys' boarding school in 1959. A new English teacher, John Keating, asks his students to treat poetry as something to live with, not just memorize. The boys revive a secret club that meets in a cave to read verse aloud, and they start to see their own lives differently <span class="cite">(Weir, 1989)</span>.</p>
+      <p>The Philippines has a stage of its own for verse: the poetic debate, a contest of arguing in verse that was first held in 1924 <span class="cite">(Manipon, 2024)</span>. This society exists to keep that stage lit.</p>
+    </div>
+
+    <div class="carpe">
+      <p class="carpe-word">Carpe diem.</p>
+      <p>Latin for “seize the day.” The phrase comes from the Roman poet Horace's <i>Odes</i>, and the film's teacher hands it to his students as a challenge.</p>
+    </div>
+
+    <div class="gallery">
+      <figure class="wide">
+        <img src="img/desks.png" width="736" height="415" alt="Students in school blazers stand on top of their desks in a classroom while an older man in a suit sits watching at the back." loading="lazy">
+        <figcaption>Standing on desks to see the room from a new angle. Still from <i>Dead Poets Society</i> (Weir, 1989).</figcaption>
+      </figure>
+      <figure>
+        <img src="img/cave.png" width="614" height="328" alt="Young men in jackets and sweaters sit close together in a dim rocky cave, lit by a shaft of light from above." loading="lazy">
+        <figcaption>Friends gather in a cave to share poems. Still from <i>Dead Poets Society</i> (Weir, 1989).</figcaption>
+      </figure>
+      <figure>
+        <img src="img/sunset.png" width="718" height="427" alt="Teenagers in red sports jerseys and black shorts hoist a person into the air on a field against an orange sunset." loading="lazy">
+        <figcaption>Celebrating together at sunset. Still from <i>Dead Poets Society</i> (Weir, 1989).</figcaption>
+      </figure>
+    </div>
+
+    <div class="trio">
+      <div>
+        <h3>Read it aloud.</h3>
+        <p>Poetry began as a spoken art, and the Philippines still keeps that habit alive in poetry recitation, poetic debate and spoken word contests <span class="cite">(The Manila Times, 2024)</span>. Read a poem to a friend.</p>
+      </div>
+      <div>
+        <h3>See from a new angle.</h3>
+        <p>In the film, a teacher stands on his desk to show that a familiar room looks different from somewhere new. Try it: write about your neighborhood from a spot where you have never stood, or in the language you speak at home.</p>
+      </div>
+      <div>
+        <h3>Contribute a verse.</h3>
+        <p>Walt Whitman's line about contributing a verse gives the film its big question: what will yours be? A four-line poem, a sketch or a mural all count <span class="cite">(Whitman, 1892)</span>.</p>
+      </div>
+    </div>
+
+    <div class="pillars-intro">
+      <h3>Four pillars</h3>
+      <p>The school in the film boasts four pillars. This society has four of its own.</p>
+    </div>
+    <div class="pillars" style="margin-top:1.5rem; padding-top:2rem">
+      <div><h3>Language</h3><p>Speak, read and write in the languages you carry, at home and at school.</p></div>
+      <div><h3>Heritage</h3><p>Collect the songs, riddles and stories your elders know before they are lost.</p></div>
+      <div><h3>Art</h3><p>Make something with your hands every week, even if nobody grades it.</p></div>
+      <div><h3>Voice</h3><p>Say your poem out loud, and say what you think about arts time in your school.</p></div>
+    </div>
+
+    <aside class="torn">
+      <p class="margin-note">Rip out the chart</p>
+      <p>In one famous class scene, the teacher has his students tear out a textbook introduction that rates poems on a graph <span class="cite">(Weir, 1989)</span>. The charts on this site count readers, speakers and classes. They never rank what a poem is worth.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- VOICES -->
+<section id="voices" class="chapter alt">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="label">Voices for the arts</p>
+      <h2>Why people say art is not a luxury.</h2>
+      <p>A fictional teacher, a stage actor and a painter. Each speaks for the idea that creative work is part of being human.</p>
+    </div>
+
+    <blockquote class="q-lead">
+      <figure class="qpic"><img src="img/keating.jpg" width="662" height="496" alt="A smiling man in a black graduation gown with a white hood." loading="lazy"></figure>
+      <div>
+        <p class="q">“…poetry, beauty, romance, love, these are what we stay alive for.”</p>
+        <footer class="q-by">John Keating, played by Robin Williams · <cite>Dead Poets Society</cite>, 1989 · Screenplay by Tom Schulman</footer>
+        <p class="q-note">An excerpt from the teacher’s speech about why we read and write poetry. In the speech he calls medicine, law, business and engineering necessary to sustain life, then names what he says we stay alive for. Watch the full scene for the complete wording.</p>
+      </div>
+    </blockquote>
+
+    <div class="q-grid">
+      <blockquote>
+        <figure class="qpic"><img src="img/stewart.jpg" width="1200" height="900" alt="A bald older man in a dark jacket and brown turtleneck, seated at a glass table with his fingers steepled." loading="lazy"></figure>
+        <p class="q">“Art is part of the human spirit, an unquenchable expression of who we are.”</p>
+        <footer class="q-by">From Sir Patrick Stewart</footer>
+      </blockquote>
+      <blockquote>
+        <figure class="qpic"><img src="img/picasso.jpg" width="800" height="600" alt="A black-and-white photo of an older man resting his chin on clasped hands in front of a large painting." loading="lazy"></figure>
+        <p class="q">“Art washes away from the soul the dust of everyday life.”</p>
+        <footer class="q-by">From Pablo Picasso</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<section id="article" class="chapter">
+  <div class="wrap">
+    <div class="sheet">
+      <p class="label">Main blog article</p>
+      <h2>When the Verses Go Quiet: Poetry and Art in the Philippines</h2>
+      <p class="deck">A look at what national surveys, language records and school reports say about reading, heritage and arts learning in the Philippines, what they cannot prove, and what young Filipinos can do.</p>
+      <p class="label meta">Living Poets Society · Updated November 11, 2026</p>
+
+      <article class="prose">
+        <p>Many Filipino children first meet verse in a lullaby, a riddle or a line on a teacher's board. Yet recent surveys and language records suggest that fewer Filipinos are reading for pleasure, that dozens of our languages are in danger, and that the classes where students meet literature and art are changing. This article walks through what the evidence shows, what it cannot prove, and where the fire still burns.</p>
+
+        <h3>Fewer Filipinos are reading for pleasure</h3>
+        <p>The National Book Development Board (NBDB) tracks readership through national surveys. In its 2023 survey, run by Social Weather Stations (SWS) with about 2,400 adults and 2,400 children, 42% of adults and 47% of children aged 8 to 17 said they read non-school books <span class="cite">(Ombay, 2024)</span>. For adults, earlier surveys found 61% in 2007 and 54% in 2012 <span class="cite">(Philippine Daily Inquirer, 2024a)</span>.</p>
+
+        <figure class="figure">
+          <div class="title">Share of Filipino adults who read non-school books</div>
+          <div class="chart-scroll">
+            <svg viewBox="0 0 640 300" role="img" aria-labelledby="c1t c1d">
+              <title id="c1t">Column chart of adult non-school book reading in the Philippines</title>
+              <desc id="c1d">Adults reading non-school books: 61 percent in 2007, 54 percent in 2012, 80 percent in 2017 using a different survey method, and 42 percent in 2023.</desc>
+              <defs>
+                <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                  <rect width="3" height="8" fill="var(--paper-red)"/>
+                </pattern>
+              </defs>
+              <g stroke="var(--paper-rule)" stroke-width="1">
+                <line x1="56" y1="30" x2="620" y2="30"/>
+                <line x1="56" y1="87.5" x2="620" y2="87.5"/>
+                <line x1="56" y1="145" x2="620" y2="145"/>
+                <line x1="56" y1="202.5" x2="620" y2="202.5"/>
+              </g>
+              <line x1="56" y1="260" x2="620" y2="260" stroke="var(--ink-muted)" stroke-width="1.5"/>
+              <g text-anchor="end">
+                <text x="48" y="264">0%</text>
+                <text x="48" y="207">25%</text>
+                <text x="48" y="149">50%</text>
+                <text x="48" y="92">75%</text>
+                <text x="48" y="34">100%</text>
+              </g>
+              <rect x="88" y="119.7" width="84" height="140.3" fill="var(--ink-muted)"/>
+              <rect x="228" y="135.8" width="84" height="124.2" fill="var(--ink-muted)"/>
+              <rect x="368" y="76" width="84" height="184" fill="url(#hatch)" stroke="var(--paper-red)" stroke-width="2" stroke-dasharray="5 4"/>
+              <rect x="508" y="163.4" width="84" height="96.6" fill="var(--paper-red)"/>
+              <g text-anchor="middle">
+                <text class="val" x="130" y="111">61%</text>
+                <text class="val" x="270" y="127">54%</text>
+                <text class="val" x="410" y="68">80%*</text>
+                <text class="val" x="550" y="155">42%</text>
+                <text class="hand" x="410" y="50">different method</text>
+                <text x="130" y="282">2007</text>
+                <text x="270" y="282">2012</text>
+                <text x="410" y="282">2017*</text>
+                <text x="550" y="282">2023</text>
+              </g>
+            </svg>
+          </div>
+          <figcaption>Figure 1. Columns are drawn to scale. *The 2017 survey used a different method, and the NBDB called its result an outlier, so it is shown hatched and should not be compared directly. Data: SWS and NBDB surveys, as reported by the Philippine Daily Inquirer (2024a).</figcaption>
+        </figure>
+
+        <p>Setting the 2017 outlier aside, the trend is a steady decline of about 12 points between 2012 and 2023 <span class="cite">(Philippine Daily Inquirer, 2024a)</span>. The 2017 figure for children, 93%, was also measured differently from the 47% of 2023, so it is not a fair comparison either <span class="cite">(Ombay, 2024)</span>.</p>
+        <p>Why are fewer people reading? Among both adults and children, the most common answer, at 38%, was that other leisure activities seemed more interesting. People also cited little time, unfamiliar words and a lack of interesting topics. Limited awareness of public libraries, and the travel time to reach them, were barriers as well. Three in four still prefer printed books, 74% of adults and 75% of children <span class="cite">(Ombay, 2024)</span>.</p>
+
+        <h3>Reading skill is a worry too</h3>
+        <p>In the 2022 PISA assessment, Filipino 15-year-olds scored 347 in reading, up from 340 in 2018, yet sixth-lowest among the 81 participating countries <span class="cite">(Chi, 2023)</span>. The seven-point gain is small progress. Reading a poem asks for the same basic skills as any reading, such as following meaning and noticing words, so weak reading makes poems harder to enjoy.</p>
+
+        <h3>Languages carry the verses</h3>
+        <p>The Komisyon sa Wikang Filipino (KWF) counts about 135 languages in the Philippines and classes 40 of them as endangered: 22 in Luzon, 10 in the Visayas and 8 in Mindanao. Árta, spoken in Nagtipunan, Quirino, is the most at risk, with only about 10 speakers left according to KWF's 2021 validation <span class="cite">(Campued, 2025)</span>. Songs, chants, riddles and stories live inside languages, so when a language fades, the verses it carries can fade with it.</p>
+
+        <figure class="figure">
+          <div class="title">Philippine languages and the 40 that are endangered</div>
+          <div class="dots" id="dots" role="img" aria-label="135 dots, one for each Philippine language. 40 are highlighted as endangered."></div>
+          <figcaption>Figure 2. Each dot is one language, 135 in all. Red dots are the 40 classed as endangered. The count of about 135 languages is the figure given by the KWF chairperson. Data: Campued (2025).</figcaption>
+        </figure>
+
+        <h3>Filipino and Philippine literature left the college core</h3>
+        <p>In 2013, a CHED memorandum removed Filipino language and Philippine literature from the required general education courses in colleges and universities. CHED's position was that these subjects are already taught in basic education under K to 12. Professors' and students' groups, including the alliance Tanggol Wika, fought the change. The Supreme Court upheld the order on October 9, 2018, overturning a restraining order issued in 2015 <span class="cite">(Mongaya, 2018)</span>. The author of that report teaches in a department that campaigned against the change, so read it as one side's account. The court decision is the fact to rely on.</p>
+
+        <h3>Arts classes: more questions than numbers</h3>
+        <p>Students usually meet art and music in MAPEH, the subject that bundles Music, Arts, Physical Education and Health. A Panay News report from October 2025 said, citing other reports, that over 62% of public high school teachers nationwide teach subjects outside their major, with examples including English teachers handling MAPEH. A division superintendent in Iloilo told the paper such mismatches are rare and temporary in his province <span class="cite">(Galigao, 2025)</span>. In September 2024, DepEd also gave schools more freedom to set class schedules, including an option where MAPEH meets four times a week instead of five <span class="cite">(Philippine Daily Inquirer, 2024b)</span>. Neither report measures how much students learn in art or music, so treat these as signs of strain, not proof of decline.</p>
+
+        <h3>Where the fire still burns</h3>
+        <p>Passion for verse has not died. The National Commission for Culture and the Arts (NCCA) ran Spirit: Cultural Symbol of the Philippines, a contest for students from all levels, with categories for poetry recitation, poetic debate, traditional love song and spoken word poetry <span class="cite">(The Manila Times, 2024)</span>. In April 2024, ten groups competed in the Cultural Center of the Philippines’ poetic debate-and-rap contest, marking 100 years since the first poetic debate on April 6, 1924. Bagong Koronadal Advocates from South Cotabato won <span class="cite">(Manipon, 2024)</span>. What fades without audiences, teachers and time is the everyday habit, not the talent.</p>
+
+        <h3>Why it matters</h3>
+        <p>A large World Health Organization review found evidence that the arts support health and well-being across the lifespan <span class="cite">(Fancourt &amp; Finn, 2019)</span>. A 2025 RAND review of 177 studies, summarized by The Wallace Foundation, found that arts engagement supports youth well-being through self-expression, a sense of agency, social connection and skill building <span class="cite">(The Wallace Foundation, 2025)</span>. Those reviews draw on many countries. We did not find a Philippine study measuring the same effects, which is a gap a school survey could start to fill.</p>
+
+        <h3>Reflect before you scroll on</h3>
+        <ul class="reflect">
+          <li>What poem, song or riddle can you still recite?</li>
+          <li>When did you last write or draw because you wanted to, not because it was a requirement?</li>
+          <li>Who in your neighborhood or school keeps poetry or art alive, and have they ever had a full audience?</li>
+        </ul>
+        <p>If any of those questions made you pause, the next chapter is for you.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CALL TO ACTION -->
+<section id="act" class="chapter alt">
+  <div class="wrap">
+    <div class="cta-head">
+      <p class="label">Call to action</p>
+      <h2>What will your verse be?</h2>
+      <p class="tl">What will your poem be?</p>
+      <p class="deck">Make room for one poem and one picture this month. It only takes a few minutes to keep poetry and art alive.</p>
+    </div>
+    <div class="cta-grid">
+      <fieldset class="pledge">
+        <legend>Sign the roll: choose your actions</legend>
+        <div class="opt"><input type="checkbox" id="p1" data-text="read one poem a week and tell a friend about it" checked><label for="p1">Read one poem a week and tell a friend about it.</label></div>
+        <div class="opt"><input type="checkbox" id="p2" data-text="write four lines of poetry once a week" checked><label for="p2">Write four lines of poetry, once a week.</label></div>
+        <div class="opt"><input type="checkbox" id="p3" data-text="sketch something near me for ten minutes"><label for="p3">Spend ten minutes sketching something near you.</label></div>
+        <div class="opt"><input type="checkbox" id="p4" data-text="watch or join a poetry reading, open mic or spoken word event"><label for="p4">Watch or join a poetry reading, open mic or spoken word event in your school or town.</label></div>
+        <div class="opt"><input type="checkbox" id="p5" data-text="ask someone to share a poem they love and write it down"><label for="p5">Ask anyone to share a poem they love, and write it down.</label></div>
+        <div class="opt"><input type="checkbox" id="p6" data-text="share a piece of literature that piqued my interest"><label for="p6">Share a piece of literature that piqued your interest.</label></div>
+        <div class="opt"><input type="checkbox" id="p7" data-text="thank a teacher who made me love poetry or art"><label for="p7">Thank a teacher who made you love poetry or art. Whitman's "O Captain! My Captain!" is the film's salute.</label></div>
+      </fieldset>
+      <div class="roll">
+        <p class="label" id="pledge-count">2 of 7 chosen</p>
+        <p class="sentence" id="pledge-out" aria-live="polite"></p>
+        <button class="btn red" type="button" id="copy-btn">Copy my pledge</button>
+        <p class="status" id="copy-status" role="status"></p>
+      </div>
+    </div>
+    <div class="voice">
+      <h3>Stand on the desk: speak up for arts and literature in school</h3>
+      <p>Ask a teacher, principal or student council to protect time for Music and Arts, to bring poetry events like readings and open mics back into the school calendar, and to keep poetry and literature alive in your classes. Bring one number from this article and one story of your own.</p>
+      <p>Then pass it on. Share this page with one person and ask them to choose their own action.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section id="references" class="chapter">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="label">References</p>
+      <h2>Sources used</h2>
+      <p>Formatted in APA 6th edition style. All information on this site is written in the author's own words.</p>
+    </div>
+    <div class="refs">
+      <p class="ref">Campued, B. (2025, August 16). <i>KWF working to save 40 dying native languages in PH</i>. PTV News. Retrieved from <a href="https://ptvnews.ph/kwf-working-to-save-40-dying-native-languages-in-ph/">https://ptvnews.ph/kwf-working-to-save-40-dying-native-languages-in-ph/</a></p>
+      <p class="ref">Chi, C. (2023, December 6). <i>Philippines still lags behind world in math, reading and science: PISA 2022</i>. Philstar.com. Retrieved from <a href="https://www.philstar.com/headlines/2023/12/06/2316732/philippines-still-lags-behind-world-math-reading-and-science-pisa-2022/amp/">https://www.philstar.com/headlines/2023/12/06/2316732/philippines-still-lags-behind-world-math-reading-and-science-pisa-2022/amp/</a></p>
+      <p class="ref">Fancourt, D., &amp; Finn, S. (2019). <i>What is the evidence on the role of the arts in improving health and well-being? A scoping review</i> (Health Evidence Network synthesis report 67). Copenhagen, Denmark: WHO Regional Office for Europe.</p>
+      <p class="ref">Galigao, N. N. (2025, October 6). Major mismatch: Teacher shortage forces educators to handle subjects outside their specialization. <i>Panay News</i>. Retrieved from <a href="https://www.panaynews.net/major-mismatch-teacher-shortage-forces-educators-to-handle-subjects-outside-their-specialization">https://www.panaynews.net/major-mismatch-teacher-shortage-forces-educators-to-handle-subjects-outside-their-specialization</a></p>
+      <p class="ref">The Manila Times. (2024, December 19). <i>Best young poets hailed by NCCA</i>. Retrieved from <a href="https://manilatimes.net/2024/12/19/campus-press/best-young-poets-hailed-by-ncca/2024131">https://manilatimes.net/2024/12/19/campus-press/best-young-poets-hailed-by-ncca/2024131</a></p>
+      <p class="ref">Manipon, R. H. (2024, April 21). Balagtasan-rap hybrid contest celebrates Tagalog poetic debate's centenary, continues oral tradition. <i>Daily Tribune</i>. Retrieved from <a href="https://tribune.net.ph/2024/04/21/balagtasan-rap-hybrid-contest-celebrates-tagalog-poetic-debates-centenary-continues-oral-tradition">https://tribune.net.ph/2024/04/21/balagtasan-rap-hybrid-contest-celebrates-tagalog-poetic-debates-centenary-continues-oral-tradition</a></p>
+      <p class="ref">Mongaya, K. (2018, December 14). <i>Removal of Filipino language and literature as required college subjects sparks opposition</i>. Global Voices. Retrieved from <a href="https://globalvoices.org/2018/12/14/removal-of-filipino-language-and-literature-as-required-college-subjects-sparks-opposition/">https://globalvoices.org/2018/12/14/removal-of-filipino-language-and-literature-as-required-college-subjects-sparks-opposition/</a></p>
+      <p class="ref">Ombay, G. (2024, March 21). <i>Non-school book readership among Filipinos drops in 2023: Survey</i>. GMA News Online. Retrieved from <a href="https://www.gmanetwork.com/news/topstories/nation/901265/non-school-book-readership-among-filipinos-drops-in-2023-survey/story">https://www.gmanetwork.com/news/topstories/nation/901265/non-school-book-readership-among-filipinos-drops-in-2023-survey/story</a></p>
+      <p class="ref">Philippine Daily Inquirer. (2024a, March 23). <i>Readership among Filipinos on steady decline: Survey</i>. Retrieved from <a href="https://newsinfo.inquirer.net/?p=1922071">https://newsinfo.inquirer.net/?p=1922071</a></p>
+      <p class="ref">Philippine Daily Inquirer. (2024b, September 20). <i>Schools given more flexibility for 'Matatag' curriculum</i>. Retrieved from <a href="https://newsinfo.inquirer.net/1985106/schools-given-more-flexibility-for-matatag-curriculum">https://newsinfo.inquirer.net/1985106/schools-given-more-flexibility-for-matatag-curriculum</a></p>
+      <p class="ref">The Wallace Foundation. (2025). <i>More than creativity: How youth arts engagement supports well-being</i>. Retrieved from <a href="https://wallacefoundation.org/arts-support-youth-well-being">https://wallacefoundation.org/arts-support-youth-well-being</a></p>
+      <p class="ref">Weir, P. (Director). (1989). <i>Dead poets society</i> [Motion picture]. United States: Touchstone Pictures.</p>
+      <p class="ref">Whitman, W. (1892). <i>Leaves of grass</i>. Philadelphia, PA: David McKay.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <svg aria-hidden="true"><use href="#crest"/></svg>
+    <p>The Living Poets Society, an advocacy blog made by Ken Kevin Fujimoto. #WeLabyuMa’amJess!<br><br>All information and content were provided by Me. A few parts of this blog was assisted by AI (Logo, Formatting, Ideas)</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var dots = document.getElementById('dots');
+  if (dots) {
+    for (var i = 0; i < 135; i++) {
+      var s = document.createElement('span');
+      if (i < 40) s.className = 'at';
+      dots.appendChild(s);
+    }
+  }
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.pledge input[type="checkbox"]'));
+  var out = document.getElementById('pledge-out');
+  var count = document.getElementById('pledge-count');
+  var copyBtn = document.getElementById('copy-btn');
+  var status = document.getElementById('copy-status');
+
+  function joinList(items) {
+    if (items.length === 1) return items[0];
+    if (items.length === 2) return items[0] + ' and ' + items[1];
+    return items.slice(0, -1).join(', ') + ', and ' + items[items.length - 1];
+  }
+  function update() {
+    var picked = boxes.filter(function (b) { return b.checked; }).map(function (b) { return b.getAttribute('data-text'); });
+    count.textContent = picked.length + ' of ' + boxes.length + ' chosen';
+    out.textContent = picked.length
+      ? 'As a member of the Living Poets Society, this month I will ' + joinList(picked) + '.'
+      : 'Tick at least one action to sign the roll.';
+    copyBtn.disabled = picked.length === 0;
+    status.textContent = '';
+  }
+  boxes.forEach(function (b) { b.addEventListener('change', update); });
+
+  function selectText(el) {
+    var range = document.createRange();
+    range.selectNodeContents(el);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+  copyBtn.addEventListener('click', function () {
+    var text = out.textContent;
+    var done = function () { status.textContent = 'Copied. Share it with a friend.'; };
+    var fail = function () { selectText(out); status.textContent = 'Your pledge is selected. Copy it with your keyboard.'; };
+    try {
+      navigator.clipboard.writeText(text).then(done, fail);
+    } catch (e) { fail(); }
+  });
+  update();
+})();
+(function () {
+  document.documentElement.classList.add('js');
+  Array.prototype.forEach.call(document.querySelectorAll('.pinned img, .gallery img, .qpic img'), function (img) {
+    var f = document.createElement('div'); f.className = 'frame';
+    img.parentNode.insertBefore(f, img); f.appendChild(img);
+  });
+  var items = Array.prototype.slice.call(document.querySelectorAll('.gallery figure, .trio > div, .pillars > div, .stat, .q-grid blockquote, .q-lead, .torn, .figure, .roll'));
+  items.forEach(function (el) {
+    el.classList.add('reveal');
+    el.style.setProperty('--d', (Array.prototype.indexOf.call(el.parentNode.children, el) % 3) * 110 + 'ms');
+  });
+  if (!('IntersectionObserver' in window)) { items.forEach(function (el) { el.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  items.forEach(function (el) { io.observe(el); });
+  var btn = document.getElementById('copy-btn');
+  btn.addEventListener('click', function () { btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop'); });
+})();
+</script>
+
+</body></html>
